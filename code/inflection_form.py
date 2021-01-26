@@ -27,14 +27,14 @@ future
 
 '''
 
-import io, os, argparse
+import io, os, argparse, random
 
 
 if __name__ == '__main__':
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--input', type = str, help = '.txt file of Seneca morphology')
-	parser.add_argument('--output', type = str, help = 'UniMorph formatted data for inflection analysis')
+	parser.add_argument('--output', type = str, help = 'path to UniMorph formatted data for inflection analysis')
 
 	args = parser.parse_args()
 
@@ -54,19 +54,22 @@ if __name__ == '__main__':
 					'past': 'PST',
 					'future': 'FUT'}
 
+	all_stem = []
 	all_meaning = []
-
-	output = io.open(args.output, 'w', encoding = 'utf-8')
+	all_data = []
 
 	with io.open(args.input, encoding = 'utf-8') as f:
 		for line in f:
 			toks = line.split()
 			meaning = toks[0]
-			lemma = toks[1]
+			stem = toks[1]
 			target = toks[-1]
 
 			temp_features = []
 			annotated_features = []
+
+			all_stem.append(stem)
+			all_meaning.append(meaning)
 
 			for f in toks[2 : -2]:
 				if f[-3 : ] == 'e-x':
@@ -81,8 +84,6 @@ if __name__ == '__main__':
 					else:
 						temp_features.append(f)
 
-			all_meaning.append(meaning)
-
 			person = ['1', '2', '3']
 
 			for f in temp_features:
@@ -94,6 +95,41 @@ if __name__ == '__main__':
 
 			annotated_features.sort()
 
-			output.write(lemma + '\t' + target + '\t' + ';'.join(f for f in annotated_features) + '\n')
+			all_data.append([stem, target, 'V;' + ';'.join(f for f in annotated_features)])
 
-	print(len(set(all_meaning)))
+	### generating train/dev/test split
+
+	heldout_size = 0.2
+
+	unique_stem = list(set(all_stem))
+	random.shuffle(unique_stem)
+
+	num_stem = len(unique_stem)
+	num_train = num_stem - int(heldout_size * num_stem)
+	num_dev = int((num_stem - num_train) / 2)
+
+	train_stem = unique_stem[ : num_train]
+	heldout_stem = unique_stem[num_train : ]
+	dev_stem = heldout_stem[ : num_dev]
+	test_stem = heldout_stem[num_dev : ]
+
+	train_data = io.open(args.output + 'train', 'w', encoding = 'utf-8')
+	dev_data = io.open(args.output + 'dev', 'w', encoding = 'utf-8')
+	test_data = io.open(args.output + 'test', 'w', encoding = 'utf-8')
+
+	exclude = ["yö", "a:di'", "i'"]
+
+	for tok in all_data:
+		if tok[0] in train_stem and tok[0] not in exclude:
+			train_data.write('\t'.join(w for w in tok) + '\n')
+		if tok[0] in dev_stem and tok[0] not in exclude:
+			dev_data.write('\t'.join(w for w in tok) + '\n')
+		if tok[0] in test_stem and tok[0] not in exclude:
+			test_data.write('\t'.join(w for w in tok) + '\n')
+
+	print(num_train)
+	print(num_dev)
+	print(len(test_stem))
+
+
+
