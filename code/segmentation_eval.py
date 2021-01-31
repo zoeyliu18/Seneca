@@ -1,5 +1,5 @@
 
-import io, os, argparse, random
+import io, os, argparse, random, statistics
 from collections import Counter
 
 def call_counter(func):
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 		for line in f:
 			tok = line.strip()
 			gold.append(tok)
-			morphs = tok.split('|')
+			morphs = tok.split('!')
 			gold_morphs.append(morphs)
 			gold_total += len(morphs)
 
@@ -68,34 +68,102 @@ if __name__ == '__main__':
 		for line in f:
 			tok = line.strip()
 			pred.append(tok)
-			morphs = tok.split('|')
+			morphs = tok.split('!')
 			pred_morphs.append(morphs)
 			pred_total += len(morphs)
 
-	labeled = 0  ### full form accuracy
-	unlabeled = 0 ### segmentation accuracy, regardless of the form of each morpheme
+	all_labeled = []  ### full form accuracy
+	all_unlabeled = [] ### segmentation accuracy, regardless of the form of each morpheme
 
-	correct_total = 0
-	ave_dist = 0
+	all_correct_total = []
+	all_ave_dist = []
 
-	for i in range(len(gold)):
-		if gold[i].count('!') == pred[i].count('!'):
-			unlabeled += 1
-		if gold[i] == pred[i]:
-			labeled += 1
+	all_F1 = []
 
-		for m in pred_morphs[i]:
-			if m in gold_morphs[i]:
-				correct_total += 1
+	### start bootstrap ###
 
-		ave_dist += levenshtein(gold[i], pred[i])
+	n = len(gold)
 
-	precision = correct_total / pred_total
-	recall = correct_total / gold_total
-	F1 = 2 * (precision * recall) / (precision + recall)
-	ave_dist = round(ave_dist / len(gold), 2)
+	### making index list ###
 
-	print('Labeled: ' + str(round(labeled * 100 / len(gold), 2)))
-	print('Unlabeled: ' + str(round(unlabeled * 100 / len(gold), 2)))
-	print('F1: ' + str(round(F1 * 100, 2)))
-	print('Average distance: ' + str(ave_dist))
+	form_index = []
+	i = 0
+	while i < n:
+		form_index.append(i)
+		i += 1
+
+	morph_index = []
+	i = 0
+	while i < len(gold_morphs):
+		morph_index.append(i)
+		i += 1
+
+	for time in range(10000):
+
+		select_form = random.choices(form_index, k = n)
+		select_morph = random.choices(morph_index, k = len(morph_index))
+		
+		### four metrics ###
+
+		labeled = 0
+		unlabeled = 0
+		correct_total = 0
+		ave_dist = 0
+
+		### constructiong sample ###
+
+		gold_sample = []
+		pred_sample = []
+
+		gold_morphs_sample = []
+		pred_morphs_sample = []
+
+		for idx in select_form:
+			gold_sample.append(gold[idx])
+			pred_sample.append(pred[idx])
+
+		for idx in select_morph:
+			gold_morphs_sample.append(gold_morphs[idx])
+			pred_morphs_sample.append(pred_morphs[idx])
+
+		for i in range(n):
+			if gold_sample[i].count('!') == pred_sample[i].count('|'):
+				unlabeled += 1
+			if gold_sample[i] == pred_sample[i]:
+				labeled += 1
+
+			for m in pred_morphs_sample[i]:
+				if m in gold_morphs_sample[i]:
+					correct_total += 1
+
+			ave_dist += levenshtein(gold_sample[i], pred_sample[i])
+
+		labeled = round(labeled * 100 / n, 2)
+		unlabeled = round(unlabeled * 100 / n, 2)
+		ave_dist = round(ave_dist / n, 2)
+
+		precision = correct_total / pred_total
+		recall = correct_total / gold_total
+		F1 = 2 * (precision * recall) / (precision + recall)
+		F1 = round(F1 * 100, 2)
+		
+		all_labeled.append(labeled)
+		all_unlabeled.append(unlabeled)
+
+		all_correct_total.append(correct_total)
+		all_ave_dist.append(ave_dist)
+
+		all_F1.append(F1)
+
+	all_labeled.sort()
+	all_unlabeled.sort()
+	all_ave_dist.sort()
+	all_F1.sort()
+
+
+	print('Labeled: ' + str(statistics.mean(all_labeled)) + ' ' + str(all_labeled[250]) + ' ' + str(all_labeled[9750]))
+	print('Unlabeled: ' + str(statistics.mean(all_unlabeled)) + ' ' + str(all_unlabeled[250]) + ' ' + str(all_unlabeled[9750]))
+	print('F1: ' + str(statistics.mean(all_F1)) + ' ' + str(all_F1[250]) + ' ' + str(all_F1[9750]))
+	print('Average distance: ' + str(statistics.mean(all_ave_dist)) + ' ' + str(all_ave_dist[250]) + ' ' + str(all_ave_dist[9750]))
+
+

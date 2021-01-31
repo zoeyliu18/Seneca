@@ -1,0 +1,9 @@
+model_dir: seneca_mod/
+
+data:
+  train_features_file: data/seneca_train_src_1
+  train_labels_file: data/seneca_train_tgt_1
+  eval_features_file: data/seneca_dev_src_1
+  eval_labels_file: data/seneca_dev_tgt_1
+  source_vocabulary: data/seneca_vocab_src_1
+  target_vocabulary: data/seneca_vocab_tgt_1

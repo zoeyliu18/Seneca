@@ -1,0 +1,100 @@
+model_dir: /content/gdrive/MyDrive/data/
+
+data:
+  train_features_file: seneca_train_src_1
+  train_labels_file: seneca_train_tgt_1
+  eval_features_file: seneca_dev_src_1
+  eval_labels_file: seneca_dev_tgt_1
+  source_vocabulary: seneca_vocab_src_1
+  target_vocabulary: seneca_vocab_tgt_1
+
+
+# Model and optimization parameters.
+params:
+  # The optimizer class name in tf.keras.optimizers or tfa.optimizers.
+  optimizer: Adam
+  # (optional) Additional optimizer parameters as defined in their documentation.
+  # If weight_decay is set, the optimizer will be extended with decoupled weight decay.
+  optimizer_params:
+    beta_1: 0.8
+    beta_2: 0.998
+  learning_rate: 1.0
+
+  # (optional) If set, overrides all dropout values configured in the model definition.
+  dropout: 0.2
+
+  # (optional) Weights regularization penalty (default: null).
+  regularization:
+    type: l2  # can be "l1", "l2", "l1_l2" (case-insensitive).
+    scale: 1e-4  # if using "l1_l2" regularization, this should be a YAML list.
+
+  # (optional) The learning rate minimum value (default: 0).
+  minimum_learning_rate: 0.001
+
+# Training options.
+train:
+  # (optional when batch_type=tokens) If not set, the training will search the largest
+  # possible batch size.
+  batch_size: 32
+
+  # (optional) Save a checkpoint every this many steps (default: 5000).
+  save_checkpoints_steps: null
+  # (optional) How many checkpoints to keep on disk.
+  keep_checkpoint_max: 3
+
+  # (optional) Dump summaries and logs every this many steps (default: 100).
+  save_summary_steps: 500
+
+  # (optional) Maximum training step. If not set, train forever.
+  max_step: 100000
+
+
+# (optional) Evaluation options.
+eval:
+  # (optional) The batch size to use (default: 32).
+  batch_size: 32
+
+  # (optional) Evaluate every this many steps (default: 5000).
+  steps: 5000
+
+  # (optional) Save evaluation predictions in model_dir/eval/.
+  save_eval_predictions: false
+  # (optional) Evalutator or list of evaluators that are called on the saved evaluation
+  # predictions.
+  # Available evaluators: bleu, rouge
+  external_evaluators: bleu
+
+  # (optional) Export a model when a metric has the best value so far (default: null).
+  export_on_best: bleu
+  # (optional) Format of the exported model (can be: "saved_model, "checkpoint",
+  # "ctranslate2", "ctranslate2_int8", "ctranslate2_int16", "ctranslate2_float16",
+  # default: "saved_model").
+  export_format: saved_model
+  # (optional) Maximum number of exports to keep on disk (default: 5).
+  max_exports_to_keep: 5
+
+  # (optional) Early stopping condition.
+  # Should be read as: stop the training if "metric" did not improve more
+  # than "min_improvement" in the last "steps" evaluations.
+  early_stopping:
+    # (optional) The target metric name (default: "loss").
+    metric: bleu
+    # (optional) The metric should improve at least by this much to be considered
+    # as an improvement (default: 0)
+    min_improvement: 0.01
+    steps: 5
+
+# (optional) Inference options.
+infer:
+  # (optional) The batch size to use (default: 16).
+  batch_size: 32
+
+  # (optional) For compatible models, the number of hypotheses to output (default: 1).
+  # This sets the parameter params/num_hypotheses.
+  n_best: 1
+
+
+# (optional) Scoring options.
+score:
+  # (optional) The batch size to use (default: 64).
+  batch_size: 32
