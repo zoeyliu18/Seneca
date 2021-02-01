@@ -127,7 +127,7 @@ if __name__ == '__main__':
 			pred_morphs_sample.append(pred_morphs[idx])
 
 		for i in range(n):
-			if gold_sample[i].count('!') == pred_sample[i].count('|'):
+			if gold_sample[i].count('!') == pred_sample[i].count('!'):
 				unlabeled += 1
 			if gold_sample[i] == pred_sample[i]:
 				labeled += 1
@@ -161,9 +161,9 @@ if __name__ == '__main__':
 	all_F1.sort()
 
 
-	print('Labeled: ' + str(statistics.mean(all_labeled)) + ' ' + str(all_labeled[250]) + ' ' + str(all_labeled[9750]))
-	print('Unlabeled: ' + str(statistics.mean(all_unlabeled)) + ' ' + str(all_unlabeled[250]) + ' ' + str(all_unlabeled[9750]))
-	print('F1: ' + str(statistics.mean(all_F1)) + ' ' + str(all_F1[250]) + ' ' + str(all_F1[9750]))
-	print('Average distance: ' + str(statistics.mean(all_ave_dist)) + ' ' + str(all_ave_dist[250]) + ' ' + str(all_ave_dist[9750]))
+	print('Labeled: ' + str(round(statistics.mean(all_labeled), 2)) + ' ' + str(all_labeled[250]) + ' ' + str(all_labeled[9750]))
+	print('Unlabeled: ' + str(round(statistics.mean(all_unlabeled), 2)) + ' ' + str(all_unlabeled[250]) + ' ' + str(all_unlabeled[9750]))
+	print('F1: ' + str(round(statistics.mean(all_F1), 2)) + ' ' + str(all_F1[250]) + ' ' + str(all_F1[9750]))
+	print('Average distance: ' + str(round(statistics.mean(all_ave_dist), 2)) + ' ' + str(all_ave_dist[250]) + ' ' + str(all_ave_dist[9750]))
 
 
