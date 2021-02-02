@@ -162,7 +162,7 @@ if __name__ == '__main__':
 
 
 	print('Labeled: ' + str(round(statistics.mean(all_labeled), 2)) + ' ' + str(all_labeled[250]) + ' ' + str(all_labeled[9750]))
-	print('Unlabeled: ' + str(round(statistics.mean(all_unlabeled), 2)) + ' ' + str(all_unlabeled[250]) + ' ' + str(all_unlabeled[9750]))
+#	print('Unlabeled: ' + str(round(statistics.mean(all_unlabeled), 2)) + ' ' + str(all_unlabeled[250]) + ' ' + str(all_unlabeled[9750]))
 	print('F1: ' + str(round(statistics.mean(all_F1), 2)) + ' ' + str(all_F1[250]) + ' ' + str(all_F1[9750]))
 	print('Average distance: ' + str(round(statistics.mean(all_ave_dist), 2)) + ' ' + str(all_ave_dist[250]) + ' ' + str(all_ave_dist[9750]))
 
