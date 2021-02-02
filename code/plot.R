@@ -3,20 +3,22 @@ library('RColorBrewer')
 library(gridExtra)
 library(tidyverse)
 
-results <- read.csv('results.csv', header = T, sep = '\t')
+results <- read.csv('results.csv', header = T, sep = ',')
 
-low_resource %>% 
+results %>% 
   ggplot(aes(x = Data, y = Mean, group = Metric, color = Metric)) +
   geom_point(aes(color = Metric, shape = Metric)) +
   geom_errorbar(aes(ymin = CI25, ymax = CI975), width = .2) +
   scale_shape_manual(values = c(16, 3, 6)) +
-  scale_color_manual(values = c("forestgreen", "steelblue", "peru")) + 
+  scale_color_manual(values = c("forestgreen", "steelblue", "mediumpurple4")) + 
   geom_line(aes(color = Metric, linetype = Metric)) + 
   scale_x_continuous(breaks=seq(1, 10, 1)) +
   ylim(-1, 100) +
   theme_classic() + 
-#  facet_grid(~Metric) +
-  theme(text = element_text(size=20, family="Times")) + 
+  facet_grid(~Language) +
+  theme(text = element_text(size=15, family="Times")) + 
   theme(legend.position="top") +
   xlab("Split") + 
   ylab("Mean")
+
+ggsave('low_resource.pdf', height = 4, width = 8)
