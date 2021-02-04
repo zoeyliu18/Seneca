@@ -1,4 +1,4 @@
-import io, os, argparse, random
+import io, os, argparse, random, statistics
 
 
 if __name__ == '__main__':
@@ -23,6 +23,10 @@ if __name__ == '__main__':
 	grammar_form = []
 	grammar_seg = []
 
+	all_morphs = []
+	num_morph = []
+
+
 	if lang == 'seneca':
 
 		with io.open(args.input, encoding = 'utf-8') as f:
@@ -38,13 +42,19 @@ if __name__ == '__main__':
 				coarse_seg.append(seg)
 				coarse_form.append(target)
 
-	### filter out words that have already been documented in the grammar book ###
 
 	if len(coarse_form) != 0:
 		for i in range(len(coarse_form)):
 			if coarse_form[i] not in all_form:
 				all_form.append(coarse_form[i])
 				all_seg.append(coarse_seg[i])
+
+	for seg in all_seg:
+		seg = ''.join(w for w in seg)
+		morphs = seg.split('!')
+		for m in morphs:
+			all_morphs.append(m)
+			num_morph.append(len(morphs))
 
 	if lang == 'seneca_other':
 
@@ -55,6 +65,7 @@ if __name__ == '__main__':
 				seg = toks[1].replace(' ','!')
 				coarse_seg.append(list(seg))
 
+
 		with io.open(args.input + 'segmentation.txt', encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.strip().split('\t')
@@ -63,12 +74,14 @@ if __name__ == '__main__':
 					seg = toks[-1].replace('-', '!')
 					coarse_seg.append(list(seg))
 
+
 		with io.open(args.input + 'seneca.morf.annotation', encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.strip().split()
 				coarse_form.append(toks[0])
 				seg = ' '.join(m for m in toks[1: ])
 				coarse_seg.append(list(seg.replace(' ', '!')))
+
 
 		with io.open(args.input + 'all-forms-from-spreadsheet.txt', encoding = 'utf-8') as f:
 			for line in f:
@@ -78,7 +91,9 @@ if __name__ == '__main__':
 
 				grammar_seg.append(seg)
 				grammar_form.append(target)
+
 	
+
 	### filter out words that have already been documented in the grammar book ###
 
 	if len(coarse_form) != 0:
@@ -87,6 +102,31 @@ if __name__ == '__main__':
 				all_form.append(coarse_form[i])
 				all_seg.append(coarse_seg[i])
 
+	for seg in all_seg:
+		seg = ''.join(w for w in seg)
+		morphs = seg.split('!')
+		for m in morphs:
+			all_morphs.append(m)
+			num_morph.append(len(morphs))
+
+	print(len(set(all_morphs)))
+	print(len(all_morphs))
+
+	ave_morph = []
+
+	for i in range(10000):
+		sample = random.choices(num_morph, k = len(num_morph))
+
+		ave = round(sum(sample) / len(num_morph), 2)
+		ave_morph.append(ave)
+
+	ave_morph.sort()
+
+	print(statistics.mean(ave_morph))
+	print(ave_morph[250])
+	print(ave_morph[9750])
+
+	'''
 
 	if lang in ['mayo', 'mexicanero', 'nahuatl', 'wixarika']:
 
@@ -192,4 +232,4 @@ if __name__ == '__main__':
 
 		z += 1
 
-
+'''
