@@ -44,7 +44,7 @@ if __name__ == '__main__':
 					'F': 'FEM',
 					'M': 'MASC',
 					'Nt': 'NEUT',
-					'MF': '',
+					'MF': 'NEUT',
 					'1': '1',
 					'2': '2',
 					'3': '3',
@@ -97,12 +97,18 @@ if __name__ == '__main__':
 
 			all_data.append([stem, target, 'V;' + ';'.join(f for f in annotated_features)])
 
+
 	### generating train/dev/test split
 
 	heldout_size = 0.2
 
 	unique_stem = list(set(all_stem))
 	random.shuffle(unique_stem)
+
+	print("yö" in unique_stem)
+	print("a:di'" in unique_stem)
+	print("i'" in unique_stem)
+	print(len(unique_stem))
 
 	num_stem = len(unique_stem)
 	num_train = num_stem - int(heldout_size * num_stem)
@@ -113,19 +119,23 @@ if __name__ == '__main__':
 	dev_stem = heldout_stem[ : num_dev]
 	test_stem = heldout_stem[num_dev : ]
 
-	train_data = io.open(args.output + 'train', 'w', encoding = 'utf-8')
-	dev_data = io.open(args.output + 'dev', 'w', encoding = 'utf-8')
-	test_data = io.open(args.output + 'test', 'w', encoding = 'utf-8')
+#	train_data = io.open(args.output + 'train', 'w', encoding = 'utf-8')
+#	dev_data = io.open(args.output + 'dev', 'w', encoding = 'utf-8')
+#	test_data = io.open(args.output + 'test', 'w', encoding = 'utf-8')
+	data = io.open(args.output + 'see', 'w', encoding = 'utf-8')
 
 	exclude = ["yö", "a:di'", "i'"]
 
 	for tok in all_data:
 		if tok[0] in train_stem and tok[0] not in exclude:
-			train_data.write('\t'.join(w for w in tok) + '\n')
+	#		train_data.write('\t'.join(w for w in tok) + '\n')
+			data.write('\t'.join(w for w in tok) + '\n')
 		if tok[0] in dev_stem and tok[0] not in exclude:
-			dev_data.write('\t'.join(w for w in tok) + '\n')
+	#		dev_data.write('\t'.join(w for w in tok) + '\n')
+			data.write('\t'.join(w for w in tok) + '\n')
 		if tok[0] in test_stem and tok[0] not in exclude:
-			test_data.write('\t'.join(w for w in tok) + '\n')
+	#		test_data.write('\t'.join(w for w in tok) + '\n')
+			data.write('\t'.join(w for w in tok) + '\n')
 
 	print(num_train)
 	print(num_dev)

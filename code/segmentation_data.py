@@ -27,15 +27,31 @@ if __name__ == '__main__':
 	num_morph = []
 
 
-	if lang == 'seneca':
+	if lang == 'grammar':
 
 		with io.open(args.input, encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.split()
 				meaning = toks[0]
 				stem = list(toks[1])
-				seg = list(toks[-2].replace('-', '!'))
-				target = toks[-1]
+				seg = toks[-2]
+				seg = seg.replace('-', '!')
+				seg = seg.replace("'", "’")
+				seg = seg.replace("’", "’")
+				seg = seg.replace("‘", "’")
+				seg = seg.replace("´", "’")
+				seg = seg.replace("Ë", "ë")
+				seg = seg.replace("I", "i")
+				seg = seg.replace("b", "h")
+				seg = seg.replace("W", "w")
+				seg = seg.replace("(", "")
+				seg = seg.replace(")", "")
+				seg = seg.replace("T", "t")
+
+				target = seg
+				target = target.replace("!", "")
+
+				seg = list(seg)
 
 				all_stem.append(stem)
 				all_meaning.append(meaning)
@@ -43,71 +59,153 @@ if __name__ == '__main__':
 				coarse_form.append(target)
 
 
-	if len(coarse_form) != 0:
-		for i in range(len(coarse_form)):
-			if coarse_form[i] not in all_form:
+		if len(coarse_form) != 0:
+			for i in range(len(coarse_form)):
+			#	if coarse_form[i] not in all_form:
 				all_form.append(coarse_form[i])
 				all_seg.append(coarse_seg[i])
 
-	for seg in all_seg:
-		seg = ''.join(w for w in seg)
-		morphs = seg.split('!')
-		for m in morphs:
-			all_morphs.append(m)
-			num_morph.append(len(morphs))
+		for seg in all_seg:
+			seg = ''.join(w for w in seg)
+			morphs = seg.split('!')
+			for m in morphs:
+				all_morphs.append(m)
+				num_morph.append(len(morphs))
 
-	if lang == 'seneca_other':
+	if lang == 'informal':
 
 		with io.open(args.input + 'all-annotations.txt', encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.strip().split('\t')
-				coarse_form.append(toks[0])
+				
 				seg = toks[1].replace(' ','!')
+				seg = seg.replace("'", "’")
+				seg = seg.replace("’", "’")
+				seg = seg.replace("‘", "’")
+				seg = seg.replace("´", "’")
+				seg = seg.replace("Ë", "ë")
+				seg = seg.replace("I", "i")
+				seg = seg.replace("b", "h")
+				seg = seg.replace("W", "w")
+				seg = seg.replace("(", "")
+				seg = seg.replace(")", "")
+				seg = seg.replace("T", "t")
+				seg = seg.replace("?", "")
+
+				target = seg
+				target = target.replace("!", "")
+
 				coarse_seg.append(list(seg))
+				coarse_form.append(target)
 
 
 		with io.open(args.input + 'segmentation.txt', encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.strip().split('\t')
 				if len(toks) == 3:
-					coarse_form.append(toks[1])
+
 					seg = toks[-1].replace('-', '!')
+					seg = seg.replace("'", "’")
+					seg = seg.replace("’", "’")
+					seg = seg.replace("‘", "’")
+					seg = seg.replace("´", "’")
+					seg = seg.replace("Ë", "ë")
+					seg = seg.replace("I", "i")
+					seg = seg.replace("b", "h")
+					seg = seg.replace("W", "w")
+					seg = seg.replace("(", "")
+					seg = seg.replace(")", "")
+					seg = seg.replace("T", "t")
+					seg = seg.replace("?", "")
+					
+					target = seg
+					target = target.replace("!", "")
+
 					coarse_seg.append(list(seg))
+					coarse_form.append(target)
 
 
 		with io.open(args.input + 'seneca.morf.annotation', encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.strip().split()
-				coarse_form.append(toks[0])
+
 				seg = ' '.join(m for m in toks[1: ])
-				coarse_seg.append(list(seg.replace(' ', '!')))
+				seg = seg.replace(' ','!')
+				seg = seg.replace("'", "’")
+				seg = seg.replace("’", "’")
+				seg = seg.replace("‘", "’")
+				seg = seg.replace("´", "’")
+				seg = seg.replace("Ë", "ë")
+				seg = seg.replace("I", "i")
+				seg = seg.replace("b", "h")
+				seg = seg.replace("W", "w")
+				seg = seg.replace("(", "")
+				seg = seg.replace(")", "")
+				seg = seg.replace("T", "t")
+				seg = seg.replace("?", "")
+
+				target = seg
+				target = target.replace("!", "")
+
+				coarse_seg.append(list(seg))
+				coarse_form.append(target)
 
 
 		with io.open(args.input + 'all-forms-from-spreadsheet.txt', encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.split()
-				seg = list(toks[-2].replace('-', '!'))
-				target = toks[-1]
 
-				grammar_seg.append(seg)
-				grammar_form.append(target)
+				seg = toks[-2]
+				seg = seg.replace('-', '!')
+				seg = seg.replace("'", "’")
+				seg = seg.replace("’", "’")
+				seg = seg.replace("‘", "’")
+				seg = seg.replace("´", "’")
+				seg = seg.replace("Ë", "ë")
+				seg = seg.replace("I", "i")
+				seg = seg.replace("b", "h")
+				seg = seg.replace("W", "w")
+				seg = seg.replace("(", "")
+				seg = seg.replace(")", "")
+				seg = seg.replace("T", "t")
+
+				target = seg
+				target = target.replace("!", "")
+
+				seg = list(seg)
+
+				coarse_seg.append(seg)
+				coarse_form.append(target)
+
+	if lang == 'robbie':
+
+		with io.open(args.input + 'robbie-tgt', encoding = 'utf-8') as f:
+			for line in f:
+				toks = line.strip().split()
+
+				seg = ''.join(c for c in toks)
+				target = seg.replace('!', '')
+
+				coarse_seg.append(list(seg))
+				coarse_form.append(target)
+
 
 	
-
 	### filter out words that have already been documented in the grammar book ###
 
-	if len(coarse_form) != 0:
-		for i in range(len(coarse_form)):
-			if coarse_form[i] not in all_form and coarse_form[i] not in grammar_form:
-				all_form.append(coarse_form[i])
-				all_seg.append(coarse_seg[i])
+		if len(coarse_form) != 0:
+			for i in range(len(coarse_form)):
+		#		if coarse_form[i] not in all_form and coarse_form[i] not in grammar_form:
+				if coarse_form[i] not in grammar_form:
+					all_form.append(coarse_form[i])
+					all_seg.append(coarse_seg[i])
 
-	for seg in all_seg:
-		seg = ''.join(w for w in seg)
-		morphs = seg.split('!')
-		for m in morphs:
-			all_morphs.append(m)
-			num_morph.append(len(morphs))
+		for seg in all_seg:
+			seg = ''.join(w for w in seg)
+			morphs = seg.split('!')
+			for m in morphs:
+				all_morphs.append(m)
+				num_morph.append(len(morphs))
 
 	print(len(set(all_morphs)))
 	print(len(all_morphs))
@@ -126,8 +224,7 @@ if __name__ == '__main__':
 	print(ave_morph[250])
 	print(ave_morph[9750])
 
-	'''
-
+'''
 	if lang in ['mayo', 'mexicanero', 'nahuatl', 'wixarika']:
 
 		with io.open(args.input + lang + '-task2-train_src', encoding = 'utf-8') as f:
@@ -161,6 +258,8 @@ if __name__ == '__main__':
 				all_seg.append(toks)
 
 	### selecting 1,000 words for every language 
+	print(len(all_form))
+	print(len(all_seg))
 
 	old_all_form = all_form
 	old_all_seg = all_seg
@@ -175,7 +274,9 @@ if __name__ == '__main__':
 
 	### change k for minimal resource settings, or for experiments on languages other than seneca ###
 
-	select = random.sample(index, k = int(args.k))
+#	select = random.sample(index, k = int(args.k))
+
+	select = random.sample(index, k = len(index))
 
 	for i in select:
 		all_form.append(old_all_form[i])

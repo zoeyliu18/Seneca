@@ -44,11 +44,15 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--gold', type = str, help = 'gold-standard segmentation')
 	parser.add_argument('--pred', type = str, help = 'predicted segmentation')
+	parser.add_argument('--ex', type = str, help = 'onmt or morf')
 
 	args = parser.parse_args()
 
 	gold = []
 	pred = []
+
+	gold_form = []
+	pred_form = []
 
 	gold_morphs = []
 	pred_morphs = []
@@ -56,21 +60,67 @@ if __name__ == '__main__':
 	gold_total = 0
 	pred_total = 0
 
+	gold_dict = {}
+	pred_dict = {}
+
 	with io.open(args.gold, encoding = 'utf-8') as f:
 		for line in f:
-			tok = line.strip()
+			tok = line.strip().split()
+			tok = ''.join(c for c in tok)
+			morphs = tok.split('!')
 			gold.append(tok)
-			morphs = tok.split('!')
-			gold_morphs.append(morphs)
-			gold_total += len(morphs)
 
-	with io.open(args.pred, encoding = 'utf-8') as f:
-		for line in f:
-			tok = line.strip()
-			pred.append(tok)
-			morphs = tok.split('!')
-			pred_morphs.append(morphs)
-			pred_total += len(morphs)
+			new_morphs = []
+			for m in morphs:
+				m = ''.join(c for c in m.split())
+				new_morphs.append(m)
+
+			gold_morphs.append(new_morphs)
+			gold_total += len(new_morphs)
+			gold_dict[''.join(m for m in new_morphs)] = new_morphs
+			gold_form.append(''.join(m for m in new_morphs))
+
+
+	if args.ex == 'onmt':
+		with io.open(args.pred, encoding = 'utf-8') as f:
+			for line in f:
+				tok = line.strip().split()
+				tok = ''.join(c for c in tok)
+				morphs = tok.split('!')
+				pred.append(tok)
+
+				new_morphs = []
+				for m in morphs:
+					m = ''.join(c for c in m.split())
+					new_morphs.append(m)
+				pred_morphs.append(new_morphs)
+				pred_total += len(new_morphs)
+				pred_dict[''.join(m for m in new_morphs)] = new_morphs
+				pred_form.append(''.join(m for m in new_morphs))
+
+	if args.ex == 'morf':
+		with io.open(args.pred, encoding = 'utf-8') as f:
+			c = 0
+			for line in f:
+				tok = line.strip().split()
+				morphs = tok
+				pred.append(tok)
+				
+				try:
+					int(tok[0])
+				except:
+					pred_morphs.append(morphs)
+					pred_total += len(morphs)
+					pred_dict[''.join(m for m in morphs)] = morphs
+					pred_form.append(''.join(m for m in morphs))
+					c += 1
+			print(c)
+			print(len(set(gold)))
+			print(len(gold_dict))
+			print(len(pred_dict))
+	#	print(pred_dict["sani:wahsyö:ni’"])
+#	for k,v in pred_dict.items():
+#		print(k, v)
 
 	all_labeled = []  ### full form accuracy
 	all_unlabeled = [] ### segmentation accuracy, regardless of the form of each morpheme
@@ -118,25 +168,61 @@ if __name__ == '__main__':
 		gold_morphs_sample = []
 		pred_morphs_sample = []
 
-		for idx in select_form:
-			gold_sample.append(gold[idx])
-			pred_sample.append(pred[idx])
+		gold_form_sample = []
+		pred_form_sample = []
 
-		for idx in select_morph:
-			gold_morphs_sample.append(gold_morphs[idx])
-			pred_morphs_sample.append(pred_morphs[idx])
+		if args.ex == 'onmt':
 
-		for i in range(n):
-			if gold_sample[i].count('!') == pred_sample[i].count('!'):
-				unlabeled += 1
-			if gold_sample[i] == pred_sample[i]:
-				labeled += 1
+			for idx in select_form:
+				gold_sample.append(gold[idx])
+				pred_sample.append(pred[idx])
 
-			for m in pred_morphs_sample[i]:
-				if m in gold_morphs_sample[i]:
-					correct_total += 1
+			for idx in select_morph:
+				gold_morphs_sample.append(gold_morphs[idx])
+				pred_morphs_sample.append(pred_morphs[idx])
 
-			ave_dist += levenshtein(gold_sample[i], pred_sample[i])
+			for i in range(n):
+				if gold_sample[i].count('!') == pred_sample[i].count('!'):
+					unlabeled += 1
+				if gold_sample[i] == pred_sample[i]:
+					labeled += 1
+
+				for m in pred_morphs_sample[i]:
+					if m in gold_morphs_sample[i]:
+						correct_total += 1
+
+			#	ave_dist += levenshtein(gold_sample[i], pred_sample[i])
+
+		if args.ex == 'morf':
+			for idx in select_form:
+				gold_sample.append(gold[idx])
+				gold_form_sample.append(gold_form[idx])
+
+
+			for idx in select_morph:
+				gold_morphs_sample.append(gold_morphs[idx])
+
+			for i in range(n):
+				seg_pred = ''
+				if gold_form_sample[i] in pred_dict:
+					seg_pred = pred_dict[gold_form_sample[i]]
+				#	print(seg_pred, gold_dict[gold_form_sample[i]])
+					if seg_pred == gold_dict[gold_form_sample[i]]:
+						labeled += 1
+
+				for m in gold_morphs_sample[i]:
+					if m in seg_pred:
+						correct_total += 1
+			#	print(gold_dict[gold_form_sample[i]])
+			#	print(pred_dict[gold_form_sample[i]])
+
+
+			#	print(list(' '.join(m for m in gold_dict[gold_form_sample[i]])))
+			#	print(list(' '.join(m for m in pred_dict[gold_form_sample[i]])))
+				gold_example = list('!'.join(m for m in gold_dict[gold_form_sample[i]]))
+				pred_example = list('!'.join(m for m in pred_dict[gold_form_sample[i]]))
+			#	ave_dist += levenshtein(gold_example, pred_example)
+
 
 		labeled = round(labeled * 100 / n, 2)
 		unlabeled = round(unlabeled * 100 / n, 2)
