@@ -4,7 +4,7 @@ import io, os, argparse, random, statistics
 if __name__ == '__main__':
 
 	parser = argparse.ArgumentParser()
-	parser.add_argument('--input', type = str, help = '.txt file of Seneca morphology')
+	parser.add_argument('--input', type = str, help = 'input path')
 	parser.add_argument('--output', type = str, help = 'path to generated segmentation data')
 	parser.add_argument('--lang', type = str, help = 'languages')
 
