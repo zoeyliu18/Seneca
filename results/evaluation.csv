@@ -1,109 +1,109 @@
 Evaluation,Setting,Model,Metric,Mean,CI25,CI975,Design
 Grammar book,in-domain,baseline,Accuracy,86.03,83.93,88.06,set
 Grammar book,in-domain,tuning parameters,Accuracy,91.92,90.34,93.42,set
-Grammar book,domain transfer,basic,Accuracy,86.02,84.02,88.06,set
-Grammar book,domain transfer,fine-tuning,Accuracy,88.68,86.74,90.52,set
-Grammar book,domain transfer,self-training,Accuracy,89.98,88.15,91.75,set
-Grammar book,domain transfer,multi-task learning,Accuracy,91.38,89.73,92.98,set
-Grammar book,crosslinguistic transfer,basic,Accuracy,90,88.24,91.75,set
-Grammar book,crosslinguistic transfer,fine-tuning,Accuracy,90.16,88.41,91.83,set
-Grammar book,crosslinguistic transfer,multi-task learning,Accuracy,90.35,88.5,92.01,set
+Grammar book,cross-domain,transfer,Accuracy,86.02,84.02,88.06,set
+Grammar book,cross-domain,fine-tuning,Accuracy,88.68,86.74,90.52,set
+Grammar book,cross-domain,self-training,Accuracy,89.98,88.15,91.75,set
+Grammar book,cross-domain,multi-task learning,Accuracy,91.38,89.73,92.98,set
+Grammar book,crosslinguistic,transfer,Accuracy,90,88.24,91.75,set
+Grammar book,crosslinguistic,fine-tuning,Accuracy,90.16,88.41,91.83,set
+Grammar book,crosslinguistic,multi-task learning,Accuracy,91.06,89.38,92.63,set
 Grammar book,in-domain,baseline,Accuracy,11.43,9.5,13.38,domain
 Grammar book,in-domain,tuning parameters,Accuracy,12.35,10.42,14.3,domain
-Grammar book,domain transfer,basic,Accuracy,73.71,71.13,76.29,domain
-Grammar book,domain transfer,fine-tuning,Accuracy,69.81,67.07,72.6,domain
-Grammar book,domain transfer,self-training,Accuracy,13.38,11.44,15.5,domain
-Grammar book,domain transfer,multi-task learning,Accuracy,14.66,12.64,16.79,domain
-Grammar book,crosslinguistic transfer,basic,Accuracy,15.12,13.01,17.25,domain
-Grammar book,crosslinguistic transfer,fine-tuning,Accuracy,15.52,13.38,17.71,domain
-Grammar book,crosslinguistic transfer,multi-task learning,Accuracy,,,,domain
+Grammar book,cross-domain,transfer,Accuracy,73.71,71.13,76.29,domain
+Grammar book,cross-domain,fine-tuning,Accuracy,69.81,67.07,72.6,domain
+Grammar book,cross-domain,self-training,Accuracy,13.38,11.44,15.5,domain
+Grammar book,cross-domain,multi-task learning,Accuracy,14.66,12.64,16.79,domain
+Grammar book,crosslinguistic,transfer,Accuracy,15.12,13.01,17.25,domain
+Grammar book,crosslinguistic,fine-tuning,Accuracy,15.52,13.38,17.71,domain
+Grammar book,crosslinguistic,multi-task learning,Accuracy,12.54,10.61,14.58,domain
 Grammar book,in-domain,baseline,Avg. Distance,0.39,0.33,0.46,set
 Grammar book,in-domain,tuning parameters,Avg. Distance,0.21,0.16,0.26,set
-Grammar book,domain transfer,basic,Avg. Distance,0.39,0.32,0.45,set
-Grammar book,domain transfer,fine-tuning,Avg. Distance,0.29,0.24,0.35,set
-Grammar book,domain transfer,self-training,Avg. Distance,0.26,0.21,0.31,set
-Grammar book,domain transfer,multi-task learning,Avg. Distance,0.21,0.17,0.25,set
-Grammar book,crosslinguistic transfer,basic,Avg. Distance,0.24,0.19,0.28,set
-Grammar book,crosslinguistic transfer,fine-tuning,Avg. Distance,0.24,0.19,0.28,set
-Grammar book,crosslinguistic transfer,multi-task learning,Avg. Distance,0.23,0.19,0.28,set
+Grammar book,cross-domain,transfer,Avg. Distance,0.39,0.32,0.45,set
+Grammar book,cross-domain,fine-tuning,Avg. Distance,0.29,0.24,0.35,set
+Grammar book,cross-domain,self-training,Avg. Distance,0.26,0.21,0.31,set
+Grammar book,cross-domain,multi-task learning,Avg. Distance,0.21,0.17,0.25,set
+Grammar book,crosslinguistic,transfer,Avg. Distance,0.24,0.19,0.28,set
+Grammar book,crosslinguistic,fine-tuning,Avg. Distance,0.24,0.19,0.28,set
+Grammar book,crosslinguistic,multi-task learning,Avg. Distance,0.22,0.18,0.26,set
 Grammar book,in-domain,baseline,Avg. Distance,5.9,5.36,6.58,domain
 Grammar book,in-domain,tuning parameters,Avg. Distance,4.01,3.83,4.21,domain
-Grammar book,domain transfer,basic,Avg. Distance,0.81,0.72,0.9,domain
-Grammar book,domain transfer,fine-tuning,Avg. Distance,0.91,0.81,1.01,domain
-Grammar book,domain transfer,self-training,Avg. Distance,3.77,3.59,3.95,domain
-Grammar book,domain transfer,multi-task learning,Avg. Distance,3.24,3.11,3.37,domain
-Grammar book,crosslinguistic transfer,basic,Avg. Distance,3.4,3.26,3.55,domain
-Grammar book,crosslinguistic transfer,fine-tuning,Avg. Distance,3.4,3.25,3.54,domain
-Grammar book,crosslinguistic transfer,multi-task learning,Avg. Distance,,,,domain
+Grammar book,cross-domain,transfer,Avg. Distance,0.81,0.72,0.9,domain
+Grammar book,cross-domain,fine-tuning,Avg. Distance,0.91,0.81,1.01,domain
+Grammar book,cross-domain,self-training,Avg. Distance,3.77,3.59,3.95,domain
+Grammar book,cross-domain,multi-task learning,Avg. Distance,3.24,3.11,3.37,domain
+Grammar book,crosslinguistic,transfer,Avg. Distance,3.4,3.26,3.55,domain
+Grammar book,crosslinguistic,fine-tuning,Avg. Distance,3.4,3.25,3.54,domain
+Grammar book,crosslinguistic,multi-task learning,Avg. Distance,3.28,3.15,3.42,domain
 Grammar book,in-domain,baseline,F1,93.1,91.48,94.66,set
 Grammar book,in-domain,tuning parameters,F1,95.96,94.55,97.41,set
-Grammar book,domain transfer,basic,F1,92.54,90.85,94.22,set
-Grammar book,domain transfer,fine-tuning,F1,94.21,92.63,95.79,set
-Grammar book,domain transfer,self-training,F1,95.78,94.36,97.22,set
-Grammar book,domain transfer,multi-task learning,F1,95.04,93.55,96.49,set
-Grammar book,crosslinguistic transfer,basic,F1,95.15,93.65,96.63,set
-Grammar book,crosslinguistic transfer,fine-tuning,F1,95.22,93.74,96.75,set
-Grammar book,crosslinguistic transfer,multi-task learning,F1,95.3,93.81,96.81,set
+Grammar book,cross-domain,transfer,F1,92.54,90.85,94.22,set
+Grammar book,cross-domain,fine-tuning,F1,94.21,92.63,95.79,set
+Grammar book,cross-domain,self-training,F1,95.78,94.36,97.22,set
+Grammar book,cross-domain,multi-task learning,F1,95.04,93.55,96.49,set
+Grammar book,crosslinguistic,transfer,F1,95.15,93.65,96.63,set
+Grammar book,crosslinguistic,fine-tuning,F1,95.22,93.74,96.75,set
+Grammar book,crosslinguistic,multi-task learning,F1,95.5,94.03,97.01,set
 Grammar book,in-domain,baseline,F1,40.32,38.45,42.21,domain
 Grammar book,in-domain,tuning parameters,F1,40.77,38.85,42.7,domain
-Grammar book,domain transfer,basic,F1,85.79,83.21,88.34,domain
-Grammar book,domain transfer,fine-tuning,F1,83.34,80.79,85.92,domain
-Grammar book,domain transfer,self-training,F1,42.96,41.05,44.93,domain
-Grammar book,domain transfer,multi-task learning,F1,42.97,41.02,44.91,domain
-Grammar book,crosslinguistic transfer,basic,F1,40.89,38.94,42.89,domain
-Grammar book,crosslinguistic transfer,fine-tuning,F1,41.15,39.2,43.12,domain
-Grammar book,crosslinguistic transfer,multi-task learning,F1,,,,domain
+Grammar book,cross-domain,transfer,F1,85.79,83.21,88.34,domain
+Grammar book,cross-domain,fine-tuning,F1,83.34,80.79,85.92,domain
+Grammar book,cross-domain,self-training,F1,42.96,41.05,44.93,domain
+Grammar book,cross-domain,multi-task learning,F1,42.97,41.02,44.91,domain
+Grammar book,crosslinguistic,transfer,F1,40.89,38.94,42.89,domain
+Grammar book,crosslinguistic,fine-tuning,F1,41.15,39.2,43.12,domain
+Grammar book,crosslinguistic,multi-task learning,F1,41.63,39.78,43.53,domain
 Informal sources,in-domain,baseline,Accuracy,69.99,67.25,72.69,set
 Informal sources,in-domain,tuning parameters,Accuracy,71.38,68.63,74.08,set
-Informal sources,domain transfer,basic,Accuracy,67.42,64.67,70.11,set
-Informal sources,domain transfer,fine-tuning,Accuracy,69.27,66.51,72.05,set
-Informal sources,domain transfer,self-training,Accuracy,70.05,67.25,72.79,set
-Informal sources,domain transfer,multi-task learning,Accuracy,72.04,69.37,74.72,set
-Informal sources,crosslinguistic transfer,basic,Accuracy,70.95,68.27,73.71,set
-Informal sources,crosslinguistic transfer,fine-tuning,Accuracy,71.39,68.63,74.17,set
-Informal sources,crosslinguistic transfer,multi-task learning,Accuracy,70.85,68.08,73.52,set
+Informal sources,cross-domain,transfer,Accuracy,67.42,64.67,70.11,set
+Informal sources,cross-domain,fine-tuning,Accuracy,69.27,66.51,72.05,set
+Informal sources,cross-domain,self-training,Accuracy,70.05,67.25,72.79,set
+Informal sources,cross-domain,multi-task learning,Accuracy,72.04,69.37,74.72,set
+Informal sources,crosslinguistic,transfer,Accuracy,70.95,68.27,73.71,set
+Informal sources,crosslinguistic,fine-tuning,Accuracy,71.39,68.63,74.17,set
+Informal sources,crosslinguistic,multi-task learning,Accuracy,73.51,70.85,76.11,set
 Informal sources,in-domain,baseline,Accuracy,10.18,8.43,11.94,domain
 Informal sources,in-domain,tuning parameters,Accuracy,12.97,11.06,14.93,domain
-Informal sources,domain transfer,basic,Accuracy,90.9,89.2,92.54,domain
-Informal sources,domain transfer,fine-tuning,Accuracy,89.04,87.18,90.78,domain
-Informal sources,domain transfer,self-training,Accuracy,12.92,11.06,14.93,domain
-Informal sources,domain transfer,multi-task learning,Accuracy,16.59,14.49,18.79,domain
-Informal sources,crosslinguistic transfer,basic,Accuracy,13.61,11.68,15.72,domain
-Informal sources,crosslinguistic transfer,fine-tuning,Accuracy,13.61,11.59,15.63,domain
-Informal sources,crosslinguistic transfer,multi-task learning,Accuracy,,,,domain
+Informal sources,cross-domain,transfer,Accuracy,90.9,89.2,92.54,domain
+Informal sources,cross-domain,fine-tuning,Accuracy,89.04,87.18,90.78,domain
+Informal sources,cross-domain,self-training,Accuracy,12.92,11.06,14.93,domain
+Informal sources,cross-domain,multi-task learning,Accuracy,16.59,14.49,18.79,domain
+Informal sources,crosslinguistic,transfer,Accuracy,13.61,11.68,15.72,domain
+Informal sources,crosslinguistic,fine-tuning,Accuracy,13.61,11.59,15.63,domain
+Informal sources,crosslinguistic,multi-task learning,Accuracy,14.65,12.64,16.77,domain
 Informal sources,in-domain,baseline,Avg. Distance,0.96,0.86,1.07,set
 Informal sources,in-domain,tuning parameters,Avg. Distance,0.86,0.77,0.95,set
-Informal sources,domain transfer,basic,Avg. Distance,0.98,0.88,1.08,set
-Informal sources,domain transfer,fine-tuning,Avg. Distance,0.92,0.82,1.02,set
-Informal sources,domain transfer,self-training,Avg. Distance,0.87,0.77,0.96,set
-Informal sources,domain transfer,multi-task learning,Avg. Distance,0.83,0.74,0.93,set
-Informal sources,crosslinguistic transfer,basic,Avg. Distance,0.83,0.74,0.91,set
-Informal sources,crosslinguistic transfer,fine-tuning,Avg. Distance,0.82,0.73,0.91,set
-Informal sources,crosslinguistic transfer,multi-task learning,Avg. Distance,0.87,0.78,0.97,set
+Informal sources,cross-domain,transfer,Avg. Distance,0.98,0.88,1.08,set
+Informal sources,cross-domain,fine-tuning,Avg. Distance,0.92,0.82,1.02,set
+Informal sources,cross-domain,self-training,Avg. Distance,0.87,0.77,0.96,set
+Informal sources,cross-domain,multi-task learning,Avg. Distance,0.83,0.74,0.93,set
+Informal sources,crosslinguistic,transfer,Avg. Distance,0.83,0.74,0.91,set
+Informal sources,crosslinguistic,fine-tuning,Avg. Distance,0.82,0.73,0.91,set
+Informal sources,crosslinguistic,multi-task learning,Avg. Distance,0.78,0.69,0.87,set
 Informal sources,in-domain,baseline,Avg. Distance,4.58,4.41,4.76,domain
 Informal sources,in-domain,tuning parameters,Avg. Distance,3.66,3.42,4,domain
-Informal sources,domain transfer,basic,Avg. Distance,0.24,0.19,0.29,domain
-Informal sources,domain transfer,fine-tuning,Avg. Distance,0.29,0.23,0.34,domain
-Informal sources,domain transfer,self-training,Avg. Distance,3.31,3.19,3.44,domain
-Informal sources,domain transfer,multi-task learning,Avg. Distance,2.97,2.85,3.09,domain
-Informal sources,crosslinguistic transfer,basic,Avg. Distance,3.07,2.95,3.18,domain
-Informal sources,crosslinguistic transfer,fine-tuning,Avg. Distance,3.06,2.95,3.18,domain
-Informal sources,crosslinguistic transfer,multi-task learning,Avg. Distance,,,,domain
+Informal sources,cross-domain,transfer,Avg. Distance,0.24,0.19,0.29,domain
+Informal sources,cross-domain,fine-tuning,Avg. Distance,0.29,0.23,0.34,domain
+Informal sources,cross-domain,self-training,Avg. Distance,3.31,3.19,3.44,domain
+Informal sources,cross-domain,multi-task learning,Avg. Distance,2.97,2.85,3.09,domain
+Informal sources,crosslinguistic,transfer,Avg. Distance,3.07,2.95,3.18,domain
+Informal sources,crosslinguistic,fine-tuning,Avg. Distance,3.06,2.95,3.18,domain
+Informal sources,crosslinguistic,multi-task learning,Avg. Distance,3.15,3.02,3.28,domain
 Informal sources,in-domain,baseline,F1,84.47,81.84,87.09,set
 Informal sources,in-domain,tuning parameters,F1,85.27,82.61,87.93,set
-Informal sources,domain transfer,basic,F1,82.5,79.9,85.23,set
-Informal sources,domain transfer,fine-tuning,F1,83.79,81.09,86.39,set
-Informal sources,domain transfer,self-training,F1,84.74,82.13,87.36,set
-Informal sources,domain transfer,multi-task learning,F1,85.38,82.77,88.01,set
-Informal sources,crosslinguistic transfer,basic,F1,85.19,82.6,87.83,set
-Informal sources,crosslinguistic transfer,fine-tuning,F1,85.35,82.74,87.94,set
-Informal sources,crosslinguistic transfer,multi-task learning,F1,84.57,81.95,87.15,set
+Informal sources,cross-domain,transfer,F1,82.5,79.9,85.23,set
+Informal sources,cross-domain,fine-tuning,F1,83.79,81.09,86.39,set
+Informal sources,cross-domain,self-training,F1,84.74,82.13,87.36,set
+Informal sources,cross-domain,multi-task learning,F1,85.38,82.77,88.01,set
+Informal sources,crosslinguistic,transfer,F1,85.19,82.6,87.83,set
+Informal sources,crosslinguistic,fine-tuning,F1,85.35,82.74,87.94,set
+Informal sources,crosslinguistic,multi-task learning,F1,86.04,83.43,88.63,set
 Informal sources,in-domain,baseline,F1,44.16,42.44,45.89,domain
 Informal sources,in-domain,tuning parameters,F1,45.38,43.72,47.06,domain
-Informal sources,domain transfer,basic,F1,95.3,93.73,96.81,domain
-Informal sources,domain transfer,fine-tuning,F1,94.27,92.71,95.86,domain
-Informal sources,domain transfer,self-training,F1,45.08,43.34,46.84,domain
-Informal sources,domain transfer,multi-task learning,F1,47.79,45.67,49.31,domain
-Informal sources,crosslinguistic transfer,basic,F1,45.07,43.24,46.92,domain
-Informal sources,crosslinguistic transfer,fine-tuning,F1,45.24,43.38,47.1,domain
-Informal sources,crosslinguistic transfer,multi-task learning,F1,,,,domain
+Informal sources,cross-domain,transfer,F1,95.3,93.73,96.81,domain
+Informal sources,cross-domain,fine-tuning,F1,94.27,92.71,95.86,domain
+Informal sources,cross-domain,self-training,F1,45.08,43.34,46.84,domain
+Informal sources,cross-domain,multi-task learning,F1,47.79,45.67,49.31,domain
+Informal sources,crosslinguistic,transfer,F1,45.07,43.24,46.92,domain
+Informal sources,crosslinguistic,fine-tuning,F1,45.24,43.38,47.1,domain
+Informal sources,crosslinguistic,multi-task learning,F1,45.91,44.02,47.76,domain
