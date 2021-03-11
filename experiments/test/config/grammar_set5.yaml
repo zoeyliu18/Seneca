@@ -1,0 +1,19 @@
+# seneca.yaml
+
+## Where the samples will be written
+save_data: experiments/test/1/grammar
+## Where the vocab(s) will be written
+src_vocab: experiments/test/1/grammar/grammar_vocab_src_5
+tgt_vocab: experiments/test/1/grammar/grammar_vocab_tgt_5
+# Prevent overwriting existing files in the folder
+overwrite: False
+
+# Corpus opts:
+data:
+    seneca:
+        path_src: experiments/test/1/grammar/grammar_train_src_5
+        path_tgt: experiments/test/1/grammar/grammar_train_tgt_5
+    valid:
+        path_src: experiments/test/1/grammar/grammar_dev_src_5
+        path_tgt: experiments/test/1/grammar/grammar_dev_tgt_5
+...
