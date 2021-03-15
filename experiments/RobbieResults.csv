@@ -1,0 +1,13 @@
+directory,samples,f-score,precision,recall,type-accuracy
+1/robbie/baseline,1000,0.48,0.523,0.443,0.0121
+1/robbie/crosslingual/basic,1000,0.149,0.973,0.0809,0.0668
+1/robbie/crosslingual/multi-task,1000,0.149,0.973,0.0809,0.0668
+1/robbie/domain/basic,1000,0.137,0.999,0.0734,0.0734
+1/robbie/domain/multi-task,1000,0.33,0.471,0.254,0.0085
+1/robbie/domain/self-training,1000,0.137,0.999,0.0734,0.0734
+2/robbie/baseline,1000,0.002,1.0,0.001,0.001
+2/robbie/crosslingual/basic,1000,0.00402,0.97,0.00202,0.001
+2/robbie/crosslingual/multi-task,1000,0.00917,0.971,0.00461,0.001
+2/robbie/domain/basic,1000,0.002,1.0,0.001,0.001
+2/robbie/domain/multi-task,1000,0.002,1.0,0.001,0.001
+2/robbie/domain/self-training,1000,0.002,1.0,0.001,0.001
