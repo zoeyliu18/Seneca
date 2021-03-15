@@ -1,0 +1,15 @@
+username@server:~/Audio/Seneca/experiments/2/robbie/crosslingual/basic$ morfessor-evaluate ./TestSet.txt SenecaZoey.bin
+Reading annotations from './TestSet.txt'...
+Detected utf-8 encoding
+Done.
+Loading model from 'SenecaZoey.bin'...
+Done.
+SenecaZoey.bin was read as a binary model
+The test set is too small for this sample size
+Filename   : SenecaZoey.bin
+Num samples  : 10
+Sample size  : 1000.0
+F-score      : 0.00402
+Precision    : 0.97
+Recall       : 0.00202
+Type-accuracy: 0.001
