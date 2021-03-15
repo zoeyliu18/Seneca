@@ -1,0 +1,15 @@
+username@server:~/Audio/Seneca/experiments/1/robbie/domain/basic$ morfessor-evaluate MorfessorEval.txt SenecaZoey.bin
+Reading annotations from 'MorfessorEval.txt'...
+Detected utf-8 encoding
+Done.
+Loading model from 'SenecaZoey.bin'...
+Done.
+SenecaZoey.bin was read as a binary model
+The test set is too small for this sample size
+Filename   : SenecaZoey.bin
+Num samples  : 10
+Sample size  : 1000.0
+F-score      : 0.137
+Precision    : 0.999
+Recall       : 0.0734
+Type-accuracy: 0.0734
