@@ -179,6 +179,31 @@ if __name__ == '__main__':
 
 	if lang == 'robbie':
 
+		with io.open(args.input, encoding = 'utf-8') as f:
+			for line in f:
+				toks = line.split()
+				seg = toks[-2]
+				seg = seg.replace('-', '!')
+				seg = seg.replace("'", "’")
+				seg = seg.replace("’", "’")
+				seg = seg.replace("‘", "’")
+				seg = seg.replace("´", "’")
+				seg = seg.replace("Ë", "ë")
+				seg = seg.replace("I", "i")
+				seg = seg.replace("b", "h")
+				seg = seg.replace("W", "w")
+				seg = seg.replace("(", "")
+				seg = seg.replace(")", "")
+				seg = seg.replace("T", "t")
+
+				target = seg
+				target = target.replace("!", "")
+
+				seg = list(seg)
+
+				grammar_seg.append(seg)
+				grammar_form.append(target)
+
 		with io.open(args.input + 'robbie-tgt', encoding = 'utf-8') as f:
 			for line in f:
 				toks = line.strip().split()
