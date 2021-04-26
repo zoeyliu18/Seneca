@@ -1,2 +1,2 @@
 # Seneca
-Morphological annotation and analysis for the Seneca language
+Morphological annotation and segmentation for the Seneca language
