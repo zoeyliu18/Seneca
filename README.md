@@ -2,7 +2,7 @@
 This repository contains code and data for the paper "Morphological Segmentation for Seneca", to appear in AmericasNLP 2021
 
 ## Data set construction when evaluating with a development set ##
-There are two data sources: a grammar book (Bardeau 2007), and words collected from transcribed informal recordings.
+There are two data sources: a grammar book ([Bardeau 2007](https://senecalanguage.com/wp-content/uploads/Verb-Book-Vol.1.pdf))), and words collected from transcribed informal recordings.
 
 To constuct data sets for the grammar book, do:
 
