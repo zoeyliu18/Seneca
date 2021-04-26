@@ -4,6 +4,8 @@ This repository contains code and data for the paper "Morphological Segmentation
 ## Data set construction when evaluating with a development set ##
 There are two data sources: a grammar book ([Bardeau 2007](https://senecalanguage.com/wp-content/uploads/Verb-Book-Vol.1.pdf))), and words collected from transcribed informal recordings.
 
+Transcriptions of informal recordings were performed by [Robbie Jimerson](https://www.linkedin.com/in/robertjimersonjr/) (rcj2772@rit.edu)
+
 To constuct data sets for the grammar book, do:
 
 ```python3 code/segmentation_data.py --input resources/all-forms-from-spreadsheet.txt --output OUTPUT_PATH --lang grammar```
