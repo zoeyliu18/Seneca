@@ -32,6 +32,8 @@ Data set construction for the informal sources is similar, except that the code 
 
 The output organization (e.g folder names) is the same as that for the grammar book described above.
 
+
+
 ## Data set construction when evaluating with a development domain ##
 
 For this evaluation scheme, I simply did command-line copy, paste, concatenate, etc. The output data is withn the folder ```2/```, and the sub-folders there are named the same ways as described above for each training setting.
