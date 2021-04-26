@@ -17,5 +17,6 @@ The data generated this way in our experiments is in 1/grammar/:
   (3) self-training is for using additional words from the Bible (in the resource folder) for training
   (4) multi-task is for multi-task learning; to get the data for this configuration in particular, do:
   
-  ```python3 code/augmentation.py --input TARGET_TRAINING_FILE --output OUTPUT_PATH --method b --bible resources/Bible_select.txt```
-  ```python3 code/prep_task.py --input INPUT_DEVELOPMENT_FILE --output OUTPUT_DEVELOPMENT_FILE```
+      ```python3 code/augmentation.py --input TARGET_TRAINING_FILE --output OUTPUT_PATH --method b --bible resources/Bible_select.txt```
+      
+      ```python3 code/prep_task.py --input INPUT_DEVELOPMENT_FILE --output OUTPUT_DEVELOPMENT_FILE```
