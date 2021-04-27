@@ -36,9 +36,8 @@ The output organization (e.g folder names) is the same as that for the grammar b
 
 
 
-## Data set construction when evaluating with a development domain ##
+## Data set construction when evaluating with a development domain is not available per request from the community##
 
-For this evaluation scheme, I simply did command-line copy, paste, concatenate, etc. The output data is withn the folder ```2/```, and the sub-folders there are named the same ways as described above for each training setting.
 
 ## Training/Applying seq2seq morphological segmentation model ##
 
@@ -50,7 +49,7 @@ All our models trained under different configurations are within each of the spe
 
 ```python3 code/segmentation_eval.py --gold GOLD_FILE --pred PREDICTED_OUTPUT --ex onmt```
 
-All our evaluation results are within each of the specified folders described above.
+All our evaluation results are within each of the specified folders described above, including results when evaluating using a development domain
 
 ## Testing a model ##
 
