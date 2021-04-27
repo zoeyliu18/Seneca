@@ -36,7 +36,7 @@ The output organization (e.g folder names) is the same as that for the grammar b
 
 
 
-## Data set construction when evaluating with a development domain is not available per request from the community##
+## Data set construction when evaluating with a development domain is not available per request from the community ##
 
 
 ## Training/Applying seq2seq morphological segmentation model ##
